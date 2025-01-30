@@ -26,6 +26,11 @@
 
  See `dashboard.yaml`
 
+ ## Documentation
+
+*   Configuring Red Alerts: [https://medium.com/daniels-tech-world/integrating-israeli-rocket-alerts-red-alerts-into-home-assistant-508a2511dbac](https://medium.com/daniels-tech-world/integrating-israeli-rocket-alerts-red-alerts-into-home-assistant-508a2511dbac)
+*   Configuring Shabbat & Yom Tov automations: [https://heyitworks.tech/home-assistant-automations-for-yom-tov-shabbat-observance](https://heyitworks.tech/home-assistant-automations-for-yom-tov-shabbat-observance)
+
 ---
 
  ## Author
