@@ -1,10 +1,9 @@
 # Home Assistant Shabbat / Yom Tov Dashboard (Jan 2025)
 
+![alt text](screenshots/v2/image.png)
+
 [![Read Blog](https://img.shields.io/badge/Read-Blog-blue)](https://heyitworks.tech/home-assistant-automations-for-yom-tov-shabbat-observance)
 
-## Display Dashboard
-
-![alt text](screenshots/1.png)
 
 ## Sensors / Add-ons Used
 

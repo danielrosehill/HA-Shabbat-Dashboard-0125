@@ -1,13 +1,38 @@
-views:
-  - title: Home
-    sections:
-      - type: grid
+title: Home
+sections:
+  - type: grid
+    cards:
+      - type: vertical-stack
         cards:
-          - type: grid
-            title: Shabbat Times
-            titleColor: white
-            columns: 1
-            square: false
+          - type: entity
+            entity: sensor.hebcal_hebrew_date
+            card_mod:
+              style: |
+                ha-card {
+                  background: linear-gradient(120deg, #2ecc71, #1abc9c);
+                  border-radius: 15px;
+                  padding: 15px;
+                  text-align: center;
+                }
+                .card-content {
+                  color: white !important;
+                }
+                .primary {
+                  font-size: 1.6em;
+                  font-weight: bold;
+                  color: white !important;
+                  line-height: 1.2;
+                }
+                .secondary {
+                  font-size: 1.4em;
+                  color: white !important;
+                  line-height: 1.2;
+                }
+                :host {
+                  --primary-text-color: white;
+                  --secondary-text-color: white;
+                }
+          - type: horizontal-stack
             cards:
               - type: entity
                 entity: sensor.hebcal_start_of_shabbat
@@ -15,7 +40,7 @@ views:
                 card_mod:
                   style: |
                     ha-card {
-                      background: linear-gradient(120deg, #2980b9, #6dd5fa);
+                      background: linear-gradient(120deg, #2ecc71, #1abc9c);
                       border-radius: 15px;
                       padding: 15px;
                     }
@@ -41,7 +66,7 @@ views:
                 card_mod:
                   style: |
                     ha-card {
-                      background: linear-gradient(120deg, #2980b9, #6dd5fa);
+                      background: linear-gradient(120deg, #2ecc71, #1abc9c);
                       border-radius: 15px;
                       padding: 15px;
                     }
@@ -61,106 +86,7 @@ views:
                       --primary-text-color: white;
                       --secondary-text-color: white;
                     }
-              - type: entity
-                entity: sensor.time
-                name: Current Time (Jerusalem)
-                card_mod:
-                  style: |
-                    ha-card {
-                      background: linear-gradient(120deg, #2980b9, #6dd5fa);
-                      border-radius: 15px;
-                      padding: 15px;
-                    }
-                    .card-content {
-                      color: white !important;
-                    }
-                    .primary {
-                      font-size: 1.8em;
-                      font-weight: bold;
-                      color: white !important;
-                    }
-                    .secondary {
-                      font-size: 1.2em;
-                      color: white !important;
-                    }
-                    :host {
-                      --primary-text-color: white;
-                      --secondary-text-color: white;
-                    }
-          - square: false
-            type: grid
-            columns: 1
-            cards:
-              - square: false
-                type: grid
-                columns: 1
-                cards:
-                  - type: markdown
-                    content: |
-                      ## Shabbat Schedule
-
-                      🌅 **Start of Shabbat** Shabbat Mode Active
-                      🌙 **00:00** Bedtime Mode
-                      ☀️ **09:00** Morning Lights
-                      🌤️ **14:30** Afternoon Lights
-                    style: |
-                      ha-card {
-                        padding: 16px;
-                        background: var(--card-background-color);
-                        border-radius: var(--ha-card-border-radius);
-                      }
-                      h2 {
-                        color: var(--primary-text-color);
-                        border-bottom: 1px solid var(--divider-color);
-                        padding-bottom: 8px;
-                        margin-bottom: 8px;
-                      }
           - type: horizontal-stack
-            cards:
-              - type: custom:mushroom-template-card
-                primary: Living Room
-                secondary: '{{ states("sensor.0xa4c138f57f884a13_temperature") }}°C'
-                icon: mdi:thermometer
-                icon_color: blue
-                layout: vertical
-                tap_action:
-                  action: more-info
-                style: |
-                  ha-card {
-                    background: rgba(var(--rgb-primary-color), 0.05);
-                    border-radius: 12px;
-                  }
-              - type: custom:mushroom-template-card
-                primary: Bedroom
-                secondary: '{{ states("sensor.0xa4c13819ea1ff606_temperature") }}°C'
-                icon: mdi:thermometer
-                icon_color: blue
-                layout: vertical
-                tap_action:
-                  action: more-info
-                style: |
-                  ha-card {
-                    background: rgba(var(--rgb-primary-color), 0.05);
-                    border-radius: 12px;
-                  }
-              - type: custom:mushroom-template-card
-                primary: Office
-                secondary: '{{ states("sensor.0x142d41fffe67e170_temperature") }}°C'
-                icon: mdi:thermometer
-                icon_color: blue
-                layout: vertical
-                tap_action:
-                  action: more-info
-                style: |
-                  ha-card {
-                    background: rgba(var(--rgb-primary-color), 0.05);
-                    border-radius: 12px;
-                  }
-      - type: grid
-        cards:
-          - square: false
-            type: grid
-            columns: 1
             cards:
               - type: entity
                 entity: sensor.hebcal_parsha
@@ -168,7 +94,7 @@ views:
                 card_mod:
                   style: |
                     ha-card {
-                      background: linear-gradient(120deg, #2980b9, #6dd5fa);
+                      background: linear-gradient(120deg, #2ecc71, #1abc9c);
                       border-radius: 15px;
                       padding: 15px;
                       text-align: center;
@@ -191,219 +117,342 @@ views:
                       --primary-text-color: white;
                       --secondary-text-color: white;
                     }
-            title: Parsha
+      - square: false
+        type: grid
+        columns: 1
+        cards:
           - square: false
             type: grid
-            columns: 2
+            columns: 1
             cards:
-              - type: custom:button-card
-                entity: binary_sensor.oref_alert_jerusalem_all_areas
-                name: Jerusalem All Areas
-                icon: mdi:check-circle
-                styles:
-                  card:
-                    - padding: 12px
-                  name:
-                    - font-weight: bold
-                    - color: white
-                  state:
-                    - color: white
-                  icon:
-                    - color: white
-                    - width: 24px
-                    - height: 24px
-                state:
-                  - value: 'on'
-                    name: Jerusalem All Areas (UNSAFE)
-                    icon: mdi:alert-octagram
-                    styles:
-                      card:
-                        - background-color: '#ea4335'
-                      icon:
-                        - animation: blink 1s ease infinite
-                  - value: 'off'
-                    name: Jerusalem All Areas (Safe)
-                    styles:
-                      card:
-                        - background-color: '#34a853'
-                  - value: unavailable
-                    styles:
-                      card:
-                        - background-color: '#ffa500'
-              - type: custom:button-card
-                entity: binary_sensor.oref_alert
-                name: Jerusalem Center
-                icon: mdi:check-circle
-                styles:
-                  card:
-                    - padding: 12px
-                  name:
-                    - font-weight: bold
-                    - color: white
-                  state:
-                    - color: white
-                  icon:
-                    - color: white
-                    - width: 24px
-                    - height: 24px
-                state:
-                  - value: 'on'
-                    name: Jerusalem Center (UNSAFE)
-                    icon: mdi:alert-octagram
-                    styles:
-                      card:
-                        - background-color: '#ea4335'
-                      icon:
-                        - animation: blink 1s ease infinite
-                  - value: 'off'
-                    name: Jerusalem Center (Safe)
-                    styles:
-                      card:
-                        - background-color: '#34a853'
-                  - value: unavailable
-                    styles:
-                      card:
-                        - background-color: '#ffa500'
-            title: Red Alerts
-          - type: horizontal-stack
-            cards:
-              - type: custom:button-card
-                entity: switch.plata
-                name: Plata
-                icon: mdi:kettle
-                size: 35px
-                styles:
-                  card:
-                    - height: 100px
-                  name:
-                    - font-size: 12px
-                state:
-                  - value: unavailable
-                    name: Offline
-                tap_action:
-                  action: toggle
-              - type: custom:button-card
-                entity: light.0xa4c1389ee6959aaf
-                name: Office
-                icon: mdi:lightbulb
-                size: 35px
-                styles:
-                  card:
-                    - height: 100px
-                  name:
-                    - font-size: 12px
-                tap_action:
-                  action: toggle
-              - type: custom:button-card
-                entity: light.0xa4c138b65346c008
-                name: Living Room
-                icon: mdi:lightbulb
-                size: 35px
-                styles:
-                  card:
-                    - height: 100px
-                  name:
-                    - font-size: 12px
-                tap_action:
-                  action: toggle
-            title: Shabbat Indicators & Devices
-          - show_current: true
-            show_forecast: false
-            type: weather-forecast
-            entity: weather.ims_weather
-            forecast_type: daily
-            name: Jerusalem, IL
-      - type: grid
-        cards:
-          - type: custom:auto-entities
-            filter:
-              include:
-                - domain: light
-                  state: 'on'
-            show_empty: false
-            card:
-              type: glance
-              columns: 6
-              show_state: false
-              show_name: true
-              show_icon: true
-              state_color: true
-              title: Active Lights
-              card_mod:
+              - type: markdown
+                content: |
+                  ## Shabbat Schedule
+                  🌅 **Start of Shabbat** Shabbat Mode Active
+                  🌙 **00:00** Bedtime Mode
+                  ☀️ **09:00** Morning Lights
+                  🌤️ **14:30** Afternoon Lights
                 style: |
                   ha-card {
-                    background: var(--card-background-color, var(--ha-card-background));
-                    border-radius: 12px;
-                    padding: 12px;
-                    margin-top: 10px;
-                    margin-bottom: 10px;
+                    padding: 16px;
+                    background: var(--card-background-color);
+                    border-radius: var(--ha-card-border-radius);
                   }
-                  .header {
-                    font-weight: bold;
-                    padding: 8px 16px;
+                  h2 {
                     color: var(--primary-text-color);
+                    border-bottom: 1px solid var(--divider-color);
+                    padding-bottom: 8px;
+                    margin-bottom: 8px;
                   }
-                  .name {
-                    font-size: 14px;
-                  }
-                  ha-card .entity {
-                    background: rgba(var(--rgb-primary-color), 0.05);
-                    border-radius: 12px;
-                    margin: 4px;
-                    padding: 8px;
-                    border: 1px solid rgba(var(--rgb-primary-color), 0.1);
-                  }
-                  ha-card .entity:hover {
-                    background: rgba(var(--rgb-primary-color), 0.1);
-                    transform: scale(1.02);
-                    transition: all 0.2s ease-in-out;
-                  }
-            grid_options:
-              columns: full
-        column_span: 2
-    type: sections
-    max_columns: 2
-    cards: []
-    badges:
-      - type: entity
-        entity: sensor.hebcal_hebrew_date
-        name: Hebrew Date
-        attribute: ''
-        state_header: 'Shabbat Dashboard For:'
-        secondary_info: none
-        card_mod:
-          style: |
-            ha-card {
-              background: linear-gradient(120deg, #2980b9, #6dd5fa);
-              border-radius: 15px;
-              padding: 15px;
-              text-align: center;
-              width: 100%;
-              margin: 0;
-              box-sizing: border-box;
-            }
-            .card-content {
-              color: white !important;
-              width: 100%;
-            }
-            .primary {
-              font-size: 1.6em;
-              font-weight: bold;
-              color: white !important;
-              line-height: 1.2;
-              width: 100%;
-            }
-            .secondary {
-              font-size: 1.4em;
-              color: white !important;
-              line-height: 1.2;
-              width: 100%;
-            }
-            :host {
-              --primary-text-color: white;
-              --secondary-text-color: white;
-              width: 100%;
-            }
-            .name {
-              display: none;
-            }
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Living Room
+            secondary: "{{ states('sensor.living_room_temperature') }}°C"
+            icon: mdi:thermometer
+            icon_color: blue
+            layout: vertical
+            tap_action:
+              action: more-info
+            style: |
+              ha-card {
+                background: rgba(var(--rgb-primary-color), 0.05);
+                border-radius: 12px;
+              }
+          - type: custom:mushroom-template-card
+            primary: Bedroom
+            secondary: "{{ states('sensor.bedroom_temperature') }}°C"
+            icon: mdi:thermometer
+            icon_color: blue
+            layout: vertical
+            tap_action:
+              action: more-info
+            style: |
+              ha-card {
+                background: rgba(var(--rgb-primary-color), 0.05);
+                border-radius: 12px;
+              }
+          - type: custom:mushroom-template-card
+            primary: Office
+            secondary: "{{ states('sensor.office_temperature') }}°C"
+            icon: mdi:thermometer
+            icon_color: blue
+            layout: vertical
+            tap_action:
+              action: more-info
+            style: |
+              ha-card {
+                background: rgba(var(--rgb-primary-color), 0.05);
+                border-radius: 12px;
+              }
+  - type: grid
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: entity
+            entity: sensor.time
+            name: Local
+            card_mod:
+              style: |
+                ha-card {
+                  background: linear-gradient(120deg, #2980b9, #6dd5fa);
+                  border-radius: 15px;
+                  padding: 15px;
+                }
+                .card-content {
+                  color: white !important;
+                }
+                .primary {
+                  font-size: 1.8em;
+                  font-weight: bold;
+                  color: white !important;
+                }
+                .secondary {
+                  font-size: 1.2em;
+                  color: white !important;
+                }
+                :host {
+                  --primary-text-color: white;
+                  --secondary-text-color: white;
+                }
+          - type: entity
+            entity: sensor.time_utc
+            name: UTC
+            card_mod:
+              style: |
+                ha-card {
+                  background: linear-gradient(120deg, #2980b9, #6dd5fa);
+                  border-radius: 15px;
+                  padding: 15px;
+                }
+                .card-content {
+                  color: white !important;
+                }
+                .primary {
+                  font-size: 1.8em;
+                  font-weight: bold;
+                  color: white !important;
+                }
+                .secondary {
+                  font-size: 1.2em;
+                  color: white !important;
+                }
+                :host {
+                  --primary-text-color: white;
+                  --secondary-text-color: white;
+                }
+      - square: false
+        type: grid
+        columns: 2
+        cards:
+          - type: custom:button-card
+            entity: binary_sensor.oref_alert_jerusalem_all_areas
+            name: Jerusalem All Areas
+            icon: mdi:check-circle
+            styles:
+              card:
+                - padding: 12px
+              name:
+                - font-weight: bold
+                - color: white
+              state:
+                - color: white
+              icon:
+                - color: white
+                - width: 24px
+                - height: 24px
+            state:
+              - value: "on"
+                name: Jerusalem All Areas (UNSAFE)
+                icon: mdi:alert-octagram
+                styles:
+                  card:
+                    - background-color: "#ea4335"
+                  icon:
+                    - animation: blink 1s ease infinite
+              - value: "off"
+                name: Jerusalem All Areas (Safe)
+                styles:
+                  card:
+                    - background-color: "#34a853"
+              - value: unavailable
+                styles:
+                  card:
+                    - background-color: "#ffa500"
+          - type: custom:button-card
+            entity: binary_sensor.oref_alert
+            name: Jerusalem Center
+            icon: mdi:check-circle
+            styles:
+              card:
+                - padding: 12px
+              name:
+                - font-weight: bold
+                - color: white
+              state:
+                - color: white
+              icon:
+                - color: white
+                - width: 24px
+                - height: 24px
+            state:
+              - value: "on"
+                name: Jerusalem Center (UNSAFE)
+                icon: mdi:alert-octagram
+                styles:
+                  card:
+                    - background-color: "#ea4335"
+                  icon:
+                    - animation: blink 1s ease infinite
+              - value: "off"
+                name: Jerusalem Center (Safe)
+                styles:
+                  card:
+                    - background-color: "#34a853"
+              - value: unavailable
+                styles:
+                  card:
+                    - background-color: "#ffa500"
+        title: Red Alerts
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            entity: switch.shabbat_hotplate
+            name: Hotplate
+            icon: mdi:kettle
+            size: 35px
+            styles:
+              card:
+                - height: 100px
+              name:
+                - font-size: 12px
+            state:
+              - value: unavailable
+                name: Offline
+            tap_action:
+              action: toggle
+          - type: custom:button-card
+            entity: light.office_light
+            name: Office
+            icon: mdi:lightbulb
+            size: 35px
+            styles:
+              card:
+                - height: 100px
+              name:
+                - font-size: 12px
+            tap_action:
+              action: toggle
+          - type: custom:button-card
+            entity: light.living_room_light
+            name: Living Room
+            icon: mdi:lightbulb
+            size: 35px
+            styles:
+              card:
+                - height: 100px
+              name:
+                - font-size: 12px
+            tap_action:
+              action: toggle
+        title: Shabbat Indicators & Devices
+      - show_current: true
+        show_forecast: false
+        type: weather-forecast
+        entity: weather.home
+        forecast_type: daily
+        name: Jerusalem, IL
+  - type: grid
+    cards:
+      - type: custom:auto-entities
+        filter:
+          include:
+            - domain: light
+              state: "on"
+        show_empty: false
+        card:
+          type: glance
+          columns: 6
+          show_state: false
+          show_name: true
+          show_icon: true
+          state_color: true
+          title: Active Lights
+          card_mod:
+            style: |
+              ha-card {
+                background: var(--card-background-color, var(--ha-card-background));
+                border-radius: 12px;
+                padding: 12px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+              }
+              .header {
+                font-weight: bold;
+                padding: 8px 16px;
+                color: var(--primary-text-color);
+              }
+              .name {
+                font-size: 14px;
+              }
+              ha-card .entity {
+                background: rgba(var(--rgb-primary-color), 0.05);
+                border-radius: 12px;
+                margin: 4px;
+                padding: 8px;
+                border: 1px solid rgba(var(--rgb-primary-color), 0.1);
+              }
+              ha-card .entity:hover {
+                background: rgba(var(--rgb-primary-color), 0.1);
+                transform: scale(1.02);
+                transition: all 0.2s ease-in-out;
+              }
+        grid_options:
+          columns: full
+    column_span: 2
+type: sections
+max_columns: 2
+cards: []
+badges:
+  - type: entity
+    entity: sensor.hebcal_hebrew_date
+    name: Hebrew Date
+    attribute: ""
+    state_header: "Shabbat Dashboard For:"
+    secondary_info: none
+    card_mod:
+      style: |
+        ha-card {
+          background: linear-gradient(120deg, #2980b9, #6dd5fa);
+          border-radius: 15px;
+          padding: 15px;
+          text-align: center;
+          width: 100%;
+          margin: 0;
+          box-sizing: border-box;
+        }
+        .card-content {
+          color: white !important;
+          width: 100%;
+        }
+        .primary {
+          font-size: 1.6em;
+          font-weight: bold;
+          color: white !important;
+          line-height: 1.2;
+          width: 100%;
+        }
+        .secondary {
+          font-size: 1.4em;
+          color: white !important;
+          line-height: 1.2;
+          width: 100%;
+        }
+        :host {
+          --primary-text-color: white;
+          --secondary-text-color: white;
+          width: 100%;
+        }
+        .name {
+          display: none;
+        }
